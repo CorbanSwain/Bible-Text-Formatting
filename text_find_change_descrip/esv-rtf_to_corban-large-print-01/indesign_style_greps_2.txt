@@ -1,0 +1,49 @@
+
+* Heading 1
+  ```
+  [\l\u].+\>
+  ```
+  * + Arial, + Bold, +  size: 12 pt, position: normal
+
+* Chapter 
+
+
+### Double Breaks
+*``Text'' Find/Change
+* Find What: `^p^p`
+* Change to: `^p`
+
+### Quote-Leading Lines
+First Round
+* ``GREP'' Find/Change
+* Find What: `\t"`
+* Change to: `\t "`
+* Find Format: Paragraph Style: Intented Quote
+
+Second Round
+* ``GREP'' Find/Change
+* Find What: `\t `
+* Find Format: Paragraph Style: Intented Quote
+* Change to: Charachter Style: Indented Quote, Leading "
+
+### Indented Quote
+* `\t ` (tab space) should br replaced with `\t\t` (tab tab)
+
+### Footnote
+* ``GREP'' Find/Change
+* Find what: `(?<=\S)~F`
+* Change to: `~|~|$0`
+* Change Format: Charachter Style: Footnote Reference
+
+### Verse Numbers
+Round 1
+* ``GREP'' Find/Change
+* Find what: `(?<![\d\r])(\d+)(?![\s\d])`
+* CHange to: `~|~k$1~|~|`
+* Change Format: Charachter Style: Verse Numbers
+
+Round 2
+* ``GREP'' Find/Change
+* Find what: `(?<=[~b\r])(\d+)(?![\s\d])`
+* CHange to: `$1~|~|`
+* Change Format: Charachter Style: Verse Numbers

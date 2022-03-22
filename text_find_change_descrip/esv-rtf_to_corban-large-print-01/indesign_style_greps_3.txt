@@ -1,0 +1,14 @@
+### Normal Text
+
+
+### Heading 1
+* Grep: `[\l\u].+\>`
+* Find Format: + Arial, + Bold, +  size: 12 pt, position: normal
+* Change Format: Paragraph Style: Heading 1
+
+### Chapter Title
+* Grep `(\d)+:1`
+* Replace With: `$1`
+* Find Format: + Arial, + Bold
+* Change Format: Charachter Style: First Chapter Number, Paragraph Style: Normal
+
