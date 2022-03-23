@@ -1,0 +1,1 @@
+grep	{ findWhat:"^\\r" }	{ changeTo:"<quotebreak>\\r", appliedParagraphStyle:"Indented Quote/No Space" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Tag All Double Breaks

@@ -1,0 +1,42 @@
+# 06-00 | Bible Text GREP Find/Change List
+
+_DEFAULT_:
+  type: grep
+  options:
+    includeFootnotes: false
+    includeMasterPages: false
+    includeHiddenLayers: false
+
+Footnote Italics:
+  find:
+    findWhat: '.+'
+    appliedParagraphStyle: 'Footnote Text'
+    appliedFont: 'Times New Roman'
+    fontStyle: 'Italic'
+  change:
+    appliedCharacterStyle: 'Footnote Text/Italic'
+  options:
+    includeFootnotes: true
+
+Remove Leading Tab on Normal:
+  find:
+    findWhat: '^\t'
+    appliedParagraphStyle: 'Normal'
+
+Add Space Between Tab and Quote:
+  find:
+    findWhat: "\\t([\"'])"
+  change:
+    changeTo: '\t $1'
+
+Add Hair Space Between Consec. Quotes:
+  find:
+    findWhat: "(['\"])(['\"])"
+  change:
+    changeTo: '$1~|$2'
+
+Tag Chapter Numbers:
+  find:
+    findWhat: '\d+(?=\s</chapnum>)'
+  change:
+    appliedCharacterStyle: 'Chapter Numbers/Selector'

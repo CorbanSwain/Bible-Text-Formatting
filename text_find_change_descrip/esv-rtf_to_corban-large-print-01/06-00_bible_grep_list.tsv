@@ -1,0 +1,5 @@
+grep	{ findWhat:".+", appliedParagraphStyle:"Footnote Text", appliedFont:"Times New Roman", fontStyle:"Italic" }	{ appliedCharacterStyle:"Footnote Text/Italic" }	{ includeFootnotes:true, includeMasterPages:false, includeHiddenLayers:false }	Footnote Italics
+grep	{ findWhat:"^\\t", appliedParagraphStyle:"Normal" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Leading Tab on Normal
+grep	{ findWhat:"\\t([\"'])" }	{ changeTo:"\\t $1" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Add Space Between Tab and Quote
+grep	{ findWhat:"(['\"])(['\"])" }	{ changeTo:"$1~|$2" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Add Hair Space Between Consec. Quotes
+grep	{ findWhat:"\\d+(?=\\s</chapnum>)" }	{ appliedCharacterStyle:"Chapter Numbers/Selector" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Tag Chapter Numbers

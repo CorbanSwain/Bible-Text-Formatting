@@ -1,0 +1,13 @@
+_DEFAULT_:
+  type: grep
+  options:
+    includeFootnotes: false
+    includeMasterPages: false
+    includeHiddenLayers: false
+
+Unstyled to Indented Quote:
+  find:
+    findWhat: '.*\r'
+    appliedParagraphStyle: '`app.paragraphStyles[0]`'
+  change:
+    appliedParagraphStyle: 'Indented Quote/No Space'

@@ -1,0 +1,34 @@
+# 05-00 | Bible Text GREP Find/Change List
+
+_DEFAULT_:
+  type: grep
+  options:
+    includeFootnotes: false
+    includeMasterPages: false
+    includeHiddenLayers: false
+
+Space Before and After Quote Line:
+  find:
+    findWhat: '(?<=<quotebreak>\r).*\r(?=<quotebreak>\r)'
+    appliedParagraphStyle: 'Indented Quote/No Space'
+  change:
+    appliedParagraphStyle: 'Indented Quote/Before and After Space'
+
+Space Before Quote Line:
+  find:
+    findWhat: '(?<=<quotebreak>\r).'
+    appliedParagraphStyle: 'Indented Quote/No Space'
+  change:
+    appliedParagraphStyle: 'Indented Quote/Before Space'
+
+Space After Quote Line:
+  find:
+    findWhat: '\r(?=<quotebreak>\r)'
+    appliedParagraphStyle: 'Indented Quote/No Space'
+  change:
+    appliedParagraphStyle: 'Indented Quote/After Space'
+
+Remove Quotebreak Tag:
+  find:
+    findWhat: '<quotebreak>\r'
+

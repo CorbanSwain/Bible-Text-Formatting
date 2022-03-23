@@ -1,0 +1,4 @@
+grep	{ findWhat:"(?<=<quotebreak>\\r).*\\r(?=<quotebreak>\\r)", appliedParagraphStyle:"Indented Quote/No Space" }	{ appliedParagraphStyle:"Indented Quote/Before and After Space" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Space Before and After Quote Line
+grep	{ findWhat:"(?<=<quotebreak>\\r).", appliedParagraphStyle:"Indented Quote/No Space" }	{ appliedParagraphStyle:"Indented Quote/Before Space" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Space Before Quote Line
+grep	{ findWhat:"\\r(?=<quotebreak>\\r)", appliedParagraphStyle:"Indented Quote/No Space" }	{ appliedParagraphStyle:"Indented Quote/After Space" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Space After Quote Line
+grep	{ findWhat:"<quotebreak>\\r" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Quotebreak Tag

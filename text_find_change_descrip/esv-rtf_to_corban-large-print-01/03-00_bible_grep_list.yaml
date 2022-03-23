@@ -1,0 +1,46 @@
+# 03-00 | Bible Text GREP Find/Change List
+
+_DEFAULT_:
+  type: grep
+  options:
+    includeFootnotes: false
+    includeMasterPages: false
+    includeHiddenLayers: false
+  
+Tag Heading 3:
+  find:
+    findWhat: '^.(?!heading>)'
+    appliedParagraphStyle: 'Heading 3'
+  change:
+    changeTo: '<heading>$0'
+
+Tag Heading 2:
+  find:
+    findWhat: '^.(?!heading>)'
+    appliedParagraphStyle: 'Heading 2'
+  change:
+    changeTo: '<heading>$0'
+    
+Remove Pre Heading Breaks:
+  find:
+    findWhat: '^\r(?=<heading>)'
+  repeat: 6
+
+Remove Post-Psalm Instruction Breaks:
+  find:
+    findWhat: '(?<=</psalminstr>\r)\r'
+
+Remove Heading Tag:
+  find:
+    findWhat: '<heading>'
+
+Remove Psalm Instruction Tag:
+  find:
+    findWhat: '</psalminstr>'
+    
+Tag Quote Double Breaks:
+  find:
+    findWhat: '^\r'
+    appliedParagraphStyle: 'Indented Quote/No Space'
+  change:
+    changeTo: '<quotebreak>\r'

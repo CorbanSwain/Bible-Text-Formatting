@@ -1,0 +1,148 @@
+# 01-01 | Bible Text GREP Find/Change List
+
+_DEFAULT_:
+  type: grep
+  options:
+    includeFootnotes: false
+    includeMasterPages: false
+    includeHiddenLayers: false
+
+Caps Heading 3:
+  find:
+    findWhat: '^.*'
+    fontStyle: 'Regular'
+    appliedFont: 'Arial'
+    pointSize: 12
+    fillColor: 'Black'
+    position: '`Position.NORMAL`'
+    capitalization: '`Capitalization.SMALL_CAPS`'
+  change:
+    appliedParagraphStyle: 'Heading 3'
+    appliedCharacterStyle: 'Heading 3/Caps'
+
+Small Caps Throughout, Arial:
+  find:
+    appliedFont: 'Arial'
+    capitalization: '`Capitalization.SMALL_CAPS`'
+  change:
+    appliedCharacterStyle: 'Normal/Small Caps'
+
+Small Caps Throughout, Times:
+  find:
+    appliedFont: 'Times New Roman'
+    capitalization: '`Capitalization.SMALL_CAPS`'
+  change:
+    appliedCharacterStyle: 'Normal/Small Caps'
+  options:
+    includeFootnotes: true
+
+Italics Throughout:
+  find:
+    fontStyle: 'Italic'
+    position: '`Position.NORMAL`'
+    appliedFont: 'Times New Roman'
+  change:
+    appliedCharacterStyle: 'Normal/Italics'
+
+Heading 2 Titles:
+  find:
+    appliedFont: 'Arial'
+    pointSize: 16
+    capitalization: '`Capitalization.ALL_CAPS`'
+  change:
+    appliedParagraphStyle: 'Heading 2'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+    
+Section Titles:
+  find:
+    findWhat: '^.*'
+    appliedFont: 'Arial'
+    pointSize: 12
+    fillColor: 'Black'
+    position: '`Position.NORMAL`'
+  change:
+    appliedParagraphStyle: 'Heading 3'
+
+Indented First Paragraph In Chapter, 1-digit:
+  find:
+    findWhat: '^\t?(\d):1'
+    firstLineIndent: '-9p0'
+    leftIndent: '9p0'
+  change:
+    appliedParagraphStyle: 'Indented First in Chapter/1-digit'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+    changeTo: '$1~%</chapnum>'
+
+First Paragraph In Chapter, 1-digit:
+  find:
+    findWhat: '^\t?(\d):1'
+  change:
+    appliedParagraphStyle: 'First in Chapter/1-digit'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+    changeTo: '$1~%</chapnum>'
+
+Indented First Paragraph In Chapter, 2-digit:
+  find:
+    findWhat: '^\t?(\d\d):1'
+    firstLineIndent: '-9p0'
+    leftIndent: '9p0'
+  change:
+    appliedParagraphStyle: 'Indented First in Chapter/2-digit'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+    changeTo: '$1~%</chapnum>'
+
+First Paragraph In Chapter, 2-digit:
+  find:
+    findWhat: '^\t?(\d\d):1'
+  change:
+    appliedParagraphStyle: 'First in Chapter/2-digit'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+    changeTo: '$1~%</chapnum>'
+
+Indented First Paragraph In Chapter, 3-digit:
+  find:
+    findWhat: '^\t?(\d\d\d):1'
+    firstLineIndent: '-9p0'
+    leftIndent: '9p0'
+  change:
+    appliedParagraphStyle: 'Indented First in Chapter/3-digit'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+    changeTo: '$1~%</chapnum>'
+
+First Paragraph In Chapter, 3-digit:
+  find:
+    findWhat: '^\t?(\d\d\d):1'
+  change:
+    appliedParagraphStyle: 'First in Chapter/3-digit'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+    changeTo: '$1~%</chapnum>'
+
+Verse Numbers:
+  find:
+    findWhat: '\d+'
+    appliedFont: 'Arial'
+    fontStyle: 'Bold'
+    position: '`Position.SUPERSCRIPT`'
+  change:
+    changeTo: '$0</versenum>'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+
+Indented Quote:
+  find:
+    findWhat: '(^.)|(^\r)'
+    leftIndent: '9p0'
+    firstLineIndent: '-9p0'
+  change:
+    appliedParagraphStyle: 'Indented Quote/No Space'
+
+Tab-Space Correction:
+  find:
+    findWhat: '\t '
+  change:
+    changeTo: '\t\t'
+
+Double-Tab Format:
+  find:
+    findWhat: '\t\t'
+  change:
+    appliedParagraphStyle: 'Indented Quote/No Space'

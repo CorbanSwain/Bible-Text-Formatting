@@ -1,0 +1,28 @@
+# 01-00 | Bible Text GREP Find/Change List
+
+_DEFAULT_:
+  type: grep
+  options:
+    includeFootnotes: false
+    includeMasterPages: false
+    includeHiddenLayers: false
+
+Normal Small Caps for Psalms:
+  find:
+    findWhat: '^.*'
+    appliedFont: 'Arial'
+    fontStyle: 'Regular'
+    pointSize: 12
+    fillColor: 'Black'
+    position: '`Position.NORMAL`'
+    capitalization: '`Capitalization.SMALL_CAPS`'
+  change:
+    appliedParagraphStyle: 'Normal/Psalm Instruction'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+
+Tag Psalm Introduction:
+  find:
+    findWhat: '\r'
+    appliedParagraphStyle: 'Normal/Psalm Instruction'
+  change:
+    changeTo: '</psalminstr>\r'

@@ -1,0 +1,1 @@
+grep	{ findWhat:".*\\r", appliedParagraphStyle:app.paragraphStyles[0] }	{ appliedParagraphStyle:"Indented Quote/No Space" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Unstyled to Indented Quote

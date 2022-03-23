@@ -1,0 +1,1 @@
+grep	{ findWhat:"^.*", appliedFont:"Arial", fontStyle:"Regular", pointSize:12, fillColor:"Black", position:Position.NORMAL, capitalization:Capitalization.SMALL_CAPS }	{ appliedParagraphStyle:"Normal/Psalm Instruction", appliedCharacterStyle:"[None]" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Normal Small Caps for Psalms

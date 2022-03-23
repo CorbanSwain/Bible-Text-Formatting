@@ -1,0 +1,15 @@
+# 04-00 | Bible Text GREP Find/Change List
+
+_DEFAULT_:
+  type: grep
+  options:
+    includeFootnotes: false
+    includeMasterPages: false
+    includeHiddenLayers: false
+
+Tag All Double Breaks:
+  find:
+    findWhat: '^\r'
+  change:
+    changeTo: '<quotebreak>\r'
+    appliedParagraphStyle: 'Indented Quote/No Space'
