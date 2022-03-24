@@ -7,6 +7,7 @@ import os
 import glob
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+import watchdog.events as w_events
 
 L = None
 
@@ -140,14 +141,17 @@ def yaml_to_findchange_list(yaml_path):
     return output
 
 
-def convert_file(file_path, debug_mode=False):
-    (file_dir, file_name) = os.path.split(file_path)
-
-    L.info(f'Performing conversion of "{file_name}".')
-
+def change_extension(file_path, new_ext='tsv'):
+    file_dir, file_name = os.path.split(file_path)
     output_name = file_name.split('.')
-    output_name = '.'.join(output_name[:-1] + ['tsv'])
-    out_file = os.path.join(file_dir, output_name)
+    output_name = '.'.join(output_name[:-1] + [new_ext, ])
+    return os.path.join(file_dir, output_name)
+
+
+def convert_file(file_path, debug_mode=False):
+    L.info(f'Performing conversion of "{os.path.split(file_path)[-1]}".')
+
+    out_file = change_extension(file_path)
 
     try:
         lines = yaml_to_findchange_list(file_path)
@@ -160,7 +164,8 @@ def convert_file(file_path, debug_mode=False):
         else:
             return
 
-    L.info(f'> Writing {len(lines)} output commmands to "{output_name}".')
+    L.info(f'> Writing {len(lines)} output commmand(s) to '
+           f'"{os.path.split(out_file)[-1]}".')
 
     with open(out_file, 'w') as f:
         f.writelines(lines)
@@ -169,6 +174,9 @@ def convert_file(file_path, debug_mode=False):
 
 
 def convert_all_files(conversion_dir, **kwargs):
+    L.info(f'Searching for .yaml files in '
+           f'"{os.path.split(conversion_dir)[-1]}" directory.')
+
     found_files = glob.glob(os.path.join(
         conversion_dir, '**', '*.yaml'), recursive=True)
 
@@ -179,17 +187,31 @@ def convert_all_files(conversion_dir, **kwargs):
 
 
 class YamlConversionEventHandler(FileSystemEventHandler):
-    def __init__(self, search_dir):
-        self.search_dir = search_dir
+    def __init__(self, convert_func):
+        self.convert_func = convert_func
         self.ignore_ext = False
+        self.skip_hidden = True
+        self.mirror_deletion = False
 
     def on_any_event(self, event):
-        if event.is_directory:
-            convert_all_files(self.search_dir)
-        else:
+        if not event.is_directory:
             src_path = event.src_path
-            if src_path.endswith('.yaml') or self.ignore_ext:
-                convert_file(event.src_path)
+            _, tail = os.path.split(src_path)
+
+            if self.skip_hidden and tail.startswith('.'):
+                return
+
+            if self.ignore_ext or src_path.endswith('.yaml'):
+                L.info(f'"{tail}" was {event.event_type}.')
+                if event.event_type in [w_events.EVENT_TYPE_DELETED]:
+                    if self.mirror_deletion:
+                        L.info("Deleting corresponding .tsv file.")
+                        os.remove(change_extension(src_path))
+                    else:
+                        L.info('Corresponding .tsv file will remain '
+                               'unchanged.')
+                else:
+                    self.convert_func(event.src_path)
 
 
 def main():
@@ -207,6 +229,12 @@ def main():
                         dest='do_watch',
                         help='flag to monitor `search-path` for changes '
                              'indefinently')
+    parser.add_argument('-d', '--mirror-delete',
+                        action='store_true',
+                        dest='mirror_deletion',
+                        help='flag to delete converted file if a watched '
+                             'yaml file is deleted. Only used if --watch '
+                             'flag is also passed')
     args = parser.parse_args()
 
     global L
@@ -229,8 +257,10 @@ def main():
     if not args.do_watch:
         return
 
-    event_handler = YamlConversionEventHandler(search_path)
+    event_handler = YamlConversionEventHandler(
+        convert_func=lambda pth: convert_file(pth))
     event_handler.ignore_ext = not did_pass_dir
+    event_handler.mirror_deletion = args.mirror_deletion
     observer = Observer()
     observer.schedule(event_handler, search_path, recursive=did_pass_dir)
     observer.start()
