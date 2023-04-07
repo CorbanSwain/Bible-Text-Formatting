@@ -1,1 +1,16 @@
 grep	{ findWhat:".*\\r", appliedParagraphStyle:app.paragraphStyles[0] }	{ appliedParagraphStyle:"Indented Quote/No Space" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Unstyled to Indented Quote
+grep	{ findWhat:"^(?!<)(?=\\S)", appliedParagraphStyle:"Heading 3" }	{ changeTo:"<heading>" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Tag Heading 3
+grep	{ findWhat:"^(?!<)(?=\\S)", appliedParagraphStyle:"Heading 2" }	{ changeTo:"<heading>" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Tag Heading 2
+grep	{ findWhat:"^\\r(?=<heading>)" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Pre Heading Breaks [repeat 1]
+grep	{ findWhat:"^\\r(?=<heading>)" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Pre Heading Breaks [repeat 2]
+grep	{ findWhat:"^\\r(?=<heading>)" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Pre Heading Breaks [repeat 3]
+grep	{ findWhat:"^\\r(?=<heading>)" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Pre Heading Breaks [repeat 4]
+grep	{ findWhat:"^\\r(?=<heading>)" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Pre Heading Breaks [repeat 5]
+grep	{ findWhat:"^\\r(?=<heading>)" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Pre Heading Breaks [repeat 6]
+grep	{ findWhat:"(?<=</psalminstr>\\r)\\r" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Post-Psalm Instruction Breaks
+grep	{ findWhat:"<heading>" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Heading Tag
+grep	{ findWhat:"</psalminstr>" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Psalm Instruction Tag
+grep	{ findWhat:"(?<=\\S)(?<!>)$", appliedParagraphStyle:"Indented Quote/No Space" }	{ changeTo:"</quoteline>", appliedCharacterStyle:app.characterStyles[0] }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Tag Quote Lines
+grep	{ findWhat:"</quoteline>\\r\\r" }	{ appliedParagraphStyle:"Indented Quote/No Space" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Style Double Break after Quote Line
+grep	{ findWhat:"</quoteline>" }	{  }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Remove Quote Line Tags
+grep	{ findWhat:"^\\r", appliedParagraphStyle:"Indented Quote/No Space" }	{ changeTo:"<quotebreak>\\r" }	{ includeFootnotes:false, includeMasterPages:false, includeHiddenLayers:false }	Tag Quote Double Breaks

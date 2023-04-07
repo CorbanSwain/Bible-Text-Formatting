@@ -23,6 +23,13 @@ Remove Leading Tab on Normal:
     findWhat: '^\t'
     appliedParagraphStyle: 'Normal'
 
+Remove Leading Footnotes Space:
+  find:
+    findWhat: '(?<=\t) '
+    appliedParagraphyStyle: 'Footnote Text'
+  options:
+    includeFootnotes: true
+
 Add Space Between Tab and Quote:
   find:
     findWhat: "\\t([\"'])"

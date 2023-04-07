@@ -11,3 +11,60 @@ Unstyled to Indented Quote:
     appliedParagraphStyle: '`app.paragraphStyles[0]`'
   change:
     appliedParagraphStyle: 'Indented Quote/No Space'
+
+Tag Heading 3:
+  find:
+    findWhat: '^(?!<)(?=\S)'
+    appliedParagraphStyle: 'Heading 3'
+  change:
+    changeTo: '<heading>'
+
+Tag Heading 2:
+  find:
+    findWhat: '^(?!<)(?=\S)'
+    appliedParagraphStyle: 'Heading 2'
+  change:
+    changeTo: '<heading>'
+    
+Remove Pre Heading Breaks:
+  find:
+    findWhat: '^\r(?=<heading>)'
+  repeat: 6
+
+Remove Post-Psalm Instruction Breaks:
+  find:
+    findWhat: '(?<=</psalminstr>\r)\r'
+
+Remove Heading Tag:
+  find:
+    findWhat: '<heading>'
+
+Remove Psalm Instruction Tag:
+  find:
+    findWhat: '</psalminstr>'
+
+Tag Quote Lines:
+  find:
+    findWhat: '(?<=\S)(?<!>)$'
+    appliedParagraphStyle: 'Indented Quote/No Space'
+  change:
+    changeTo: '</quoteline>'
+    appliedCharacterStyle: '`app.characterStyles[0]`'
+
+Style Double Break after Quote Line:
+  find:
+    findWhat: '</quoteline>\r\r'
+  change:
+    appliedParagraphStyle: 'Indented Quote/No Space'
+
+Remove Quote Line Tags:
+  find:
+    findWhat: '</quoteline>'
+    
+Tag Quote Double Breaks:
+  find:
+    findWhat: '^\r'
+    appliedParagraphStyle: 'Indented Quote/No Space'
+  change:
+    changeTo: '<quotebreak>\r'
+

@@ -73,7 +73,6 @@ def dict_to_jstr(d):
                 assert v.endswith('`'), 'Expected ` at end of string.'
                 out_strs.append(f'{k}:{v[1:-1]}')
             else:
-
                 v_escaped = v.replace('\\', '\\\\')
                 v_escaped = v_escaped.replace('"', '\\"')
                 out_strs.append(f'{k}:"{v_escaped}"')

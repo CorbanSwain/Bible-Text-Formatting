@@ -21,4 +21,4 @@ try{
 }
 catch (e){alert ("No footnotes!")}
 
-alert("Footnote Overrides cleared!");
+alert("All Overrides cleared!");
